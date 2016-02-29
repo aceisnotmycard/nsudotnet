@@ -74,7 +74,7 @@ namespace Bogolepov.Nsudotnet.NumberGuesser
                 {
                     Console.WriteLine("Well, it is definitely not number nor 'q', but it should be.");
                 }
-            }
+            } 
         }
     }
 }
