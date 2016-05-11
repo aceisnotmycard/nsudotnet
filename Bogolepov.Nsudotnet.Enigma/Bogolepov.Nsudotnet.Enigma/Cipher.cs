@@ -11,7 +11,7 @@ namespace Bogolepov.Nsudotnet.Enigma
             "Aes", "Des", "Rc2", "Rijndael"
         };
 
-        public static bool Encrypt(string input, string output, string algorithm)
+        public static void Encrypt(string input, string output, string algorithm)
         {
             var symAlgo = SymmetricAlgorithm.Create(algorithm);
             using (var inputStream = new FileStream(input, FileMode.Open, FileAccess.Read))
@@ -28,23 +28,16 @@ namespace Bogolepov.Nsudotnet.Enigma
                 streamWriter.WriteLine(Convert.ToBase64String(symAlgo.Key));
                 streamWriter.WriteLine(Convert.ToBase64String(symAlgo.IV));
             }
-            return true;
         }
 
-        public static bool Decrypt(string input, string output, string algorithm, string keys)
+        public static void Decrypt(string input, string output, string algorithm, string keys)
         {
             var symAlgo = SymmetricAlgorithm.Create(algorithm);
             using (var inputStream = new FileStream(keys, FileMode.Open, FileAccess.Read))
             using (var streamReader = new StreamReader(inputStream))
             {
-                string key = streamReader.ReadLine();
-                string iv = streamReader.ReadLine();
-                if (key == null || iv == null)
-                {
-                    return false;
-                }
-                symAlgo.Key = Convert.FromBase64String(key);
-                symAlgo.IV = Convert.FromBase64String(iv);
+                symAlgo.Key = Convert.FromBase64String(streamReader.ReadLine());
+                symAlgo.IV = Convert.FromBase64String(streamReader.ReadLine());
             }
             using (var inputStream = new FileStream(input, FileMode.Open, FileAccess.Read))
             using (var outputStream = new FileStream(output, FileMode.Create, FileAccess.Write))
@@ -52,7 +45,6 @@ namespace Bogolepov.Nsudotnet.Enigma
             {
                 cryptoStream.CopyTo(outputStream);
             }
-            return true;
         }
     }
 }

@@ -35,29 +35,13 @@ Following algorithms are supported:
             {
                 if (mode == EncryptMode)
                 {
-                    if (Cipher.Encrypt(args[1], args[3], algorithm))
-                    {
-                        Console.WriteLine("Succesfully encrypted!");
-                        return;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Something went wrong");
-                        return;
-                    }
+                    Cipher.Encrypt(args[1], args[3], algorithm);
+                    Console.WriteLine("Succesfully encrypted file.");    
                 }
                 else
                 {
-                    if (Cipher.Decrypt(args[1], args[4], algorithm, args[3]))
-                    {
-                        Console.WriteLine("Succesfully decrypted file");
-                        return;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Something went wrong");
-                        return;
-                    }
+                    Cipher.Decrypt(args[1], args[4], algorithm, args[3]);
+                    Console.WriteLine("Succesfully decrypted file.");
                 }
             }
         }
