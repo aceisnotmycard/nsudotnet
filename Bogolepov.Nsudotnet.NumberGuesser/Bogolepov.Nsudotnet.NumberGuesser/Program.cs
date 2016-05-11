@@ -50,7 +50,7 @@ namespace Bogolepov.Nsudotnet.NumberGuesser
                         );
                         Console.WriteLine($"It took {(DateTime.Now - startTime).TotalMinutes} minutes");
                         Console.Read();
-                        Environment.Exit(0);
+                        return;
                     }
                     else
                     {
@@ -68,7 +68,7 @@ namespace Bogolepov.Nsudotnet.NumberGuesser
                 {
                     Console.WriteLine("Goodbye, sucker");
                     Console.Read();
-                    Environment.Exit(0);
+                    return;
                 }
                 else
                 {
