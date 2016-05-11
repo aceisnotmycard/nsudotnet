@@ -16,10 +16,10 @@ namespace Bogolepov.Nsudotnet.NumberGuesser
     {
         private static readonly string[] Comments =
         {
-            "Stupid idiot",
-            "Motherfucker!",
-            "Edrit' ti bestoloch",
-            "You're such a fool"
+            "You're sooo stupid, {0}.",
+            "Someone is dumber than Hippo. Yes, {0} it's you.",
+            "Bring me someone smarter, {0}.",
+            "{0}, you completely disappointed me."
         };
 
         private const int Fuckometer = 4;
@@ -28,8 +28,8 @@ namespace Bogolepov.Nsudotnet.NumberGuesser
         {
             var guessCounter = 0;
             var guesses = new string[1000];
-            var answer = new Random().Next(0, 100);
             var random = new Random();
+            var answer = random.Next(0, 100);
 
             Console.WriteLine("Hello! What's your name?");
             var name = Console.ReadLine();
@@ -60,7 +60,7 @@ namespace Bogolepov.Nsudotnet.NumberGuesser
                         guessCounter++;
                         if (guessCounter % Fuckometer == 0)
                         {
-                            Console.WriteLine($"{name} you are {Comments.RandomElement(random)}");
+                            Console.WriteLine(Comments.RandomElement(random), name);
                         }
                     }
                 }
