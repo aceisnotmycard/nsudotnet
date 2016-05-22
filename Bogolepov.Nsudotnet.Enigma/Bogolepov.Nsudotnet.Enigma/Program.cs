@@ -9,7 +9,6 @@ namespace Bogolepov.Nsudotnet.Enigma
         private const string DecryptArg = "decrypt";
 
         private const bool EncryptMode = false;
-        private const bool DecryptMode = !EncryptMode;
 
         private const string UnsupportedAction = "Please choose what you want to do: encrypt or decrypt";
         private const string CommandsFormat = @"
@@ -31,7 +30,7 @@ Following algorithms are supported:
         {
             string algorithm;
             bool mode;
-            if (checkArgs(args, out algorithm, out mode))
+            if (CheckArgs(args, out algorithm, out mode))
             {
                 if (mode == EncryptMode)
                 {
@@ -46,7 +45,7 @@ Following algorithms are supported:
             }
         }
 
-        private static bool checkArgs(string[] args, out string algorithm, out bool mode)
+        private static bool CheckArgs(string[] args, out string algorithm, out bool mode)
         {
             algorithm = "";
             mode = EncryptMode;
@@ -85,7 +84,7 @@ Following algorithms are supported:
             }
             else
             {
-                mode = DecryptMode;
+                mode = !EncryptMode;
                 if (!File.Exists(args[3]))
                 {
                     Console.WriteLine($"{args[3]} not exists!");
